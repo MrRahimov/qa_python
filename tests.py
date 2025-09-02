@@ -110,4 +110,23 @@ class TestBooksCollector:
         assert set(books.keys()) == {'Три товарища', 'Маленький принц'}
 
 
+    def test_get_book_genre_returns_correct_genre(self):
+        collector = BooksCollector()
+        collector.add_new_book('1984')
+        collector.set_book_genre('1984', 'Фантастика')
+
+        assert collector.get_book_genre('1984') == 'Фантастика'
+
+    def test_get_list_of_favorites_books_returns_correct_list(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гарри Поттер')
+        collector.add_new_book('Шерлок Холмс')
+
+        collector.add_book_in_favorites('Гарри Поттер')
+
+        result = collector.get_list_of_favorites_books()
+
+        assert result == ['Гарри Поттер']
+   
+
 
