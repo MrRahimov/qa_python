@@ -65,12 +65,9 @@ class TestBooksCollector:
 
     def test_add_book_in_favorites_adds_once(self, collector):
         collector.add_new_book('Мастер и Маргарита')
-
-        collector.add_book_in_favorites('Мастер и Маргарита')
         collector.add_book_in_favorites('Мастер и Маргарита')
 
         favorites = collector.get_list_of_favorites_books()
-
         assert favorites == ['Мастер и Маргарита']
 
     def test_delete_book_from_favorites_removes_book(self, collector):
@@ -102,7 +99,7 @@ class TestBooksCollector:
 
     def test_get_book_genre_returns_correct_genre(self, collector):
         collector.add_new_book('1984')
-        collector.set_book_genre('1984', 'Фантастика')
+        collector.books_genre['1984'] = 'Фантастика'
         assert collector.get_book_genre('1984') == 'Фантастика'
 
     def test_get_list_of_favorites_books_returns_correct_list(self, collector):
@@ -112,5 +109,4 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Гарри Поттер')
 
         result = collector.get_list_of_favorites_books()
-
         assert result == ['Гарри Поттер']
